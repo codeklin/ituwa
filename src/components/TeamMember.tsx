@@ -1,5 +1,5 @@
-import React from 'react';
-import { LinkedinIcon, TwitterIcon } from 'lucide-react';
+
+import { LinkedinIcon, XIcon} from 'lucide-react';
 
 interface TeamMemberProps {
   name: string;
@@ -37,7 +37,7 @@ export default function TeamMember({ name, role, image, linkedin, twitter }: Tea
             rel="noopener noreferrer"
             className="text-gray-600 hover:text-indigo-600"
           >
-            <TwitterIcon className="w-5 h-5" />
+            <XIcon className="w-5 h-5" />
           </a>
         )}
       </div>
