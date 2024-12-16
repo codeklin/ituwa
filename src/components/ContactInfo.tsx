@@ -1,5 +1,5 @@
 
-import { Mail, Phone, MapPin, Clock } from 'lucide-react';
+import {  Clock } from 'lucide-react';
 
 export default function ContactInfo() {
   return (
@@ -7,6 +7,7 @@ export default function ContactInfo() {
       <h3 className="text-lg font-semibold text-gray-900 mb-6">Contact Information</h3>
       <div className="space-y-4">
         {/*}
+        Mail, Phone, MapPin,
         <div className="flex items-start space-x-3">
           <Mail className="w-5 h-5 text-indigo-600 mt-1" />
           <div>

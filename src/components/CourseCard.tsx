@@ -9,7 +9,7 @@ interface CourseCardProps {
 export default function CourseCard({ course }: CourseCardProps) {
   const handleEnrollClick = () => {
     // Replace this URL with your actual Google Form URL
-    window.open('https://forms.gle/your-form-id', '_blank');
+    window.open('https://forms.gle/srGynW1yZre5T8af6', '_blank');
   };
 
   return (
