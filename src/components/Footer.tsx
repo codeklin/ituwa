@@ -59,7 +59,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Mail className="w-4 h-4" />
-                <span>hello@ituwa.com</span>
+                <span>ituwaafrica@gmail.com</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Phone className="w-4 h-4" />
