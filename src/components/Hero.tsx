@@ -1,4 +1,4 @@
-
+import heroImage from '../assets/hero-img.png';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 
@@ -19,7 +19,7 @@ export default function Hero() {
           </div>
 
           <div>
-            <img className="w-full" src="/public/hero-img.png" alt="Cybersecurity" />
+            <img  className="w-full" src={heroImage} alt="Cybersecurity" />
           </div>
         </div>
       </div>
