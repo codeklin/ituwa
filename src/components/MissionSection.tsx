@@ -1,4 +1,4 @@
-
+import React from 'react';
 import { Target, Users, Globe } from 'lucide-react';
 
 export default function MissionSection() {

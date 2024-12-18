@@ -5,7 +5,8 @@ import {
   Mail,
   Phone,
   MapPin,
-  X,
+  Facebook,
+  Twitter,
   Linkedin,
 } from 'lucide-react';
 
@@ -76,14 +77,21 @@ export default function Footer() {
           <div>
             <h3 className="text-white font-semibold mb-4">Follow Us</h3>
             <div className="flex space-x-4">
-              
+              <a
+                href="https://facebook.com"
+                className="hover:text-indigo-400"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Facebook className="w-6 h-6" />
+              </a>
               <a
                 href="https://twitter.com"
                 className="hover:text-indigo-400"
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <X className="w-6 h-6" />
+                <Twitter className="w-6 h-6" />
               </a>
               <a
                 href="https://linkedin.com"

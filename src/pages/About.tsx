@@ -1,11 +1,12 @@
-import React from 'react';
-import TeamMember from '../components/TeamMember';
+
+import Header from '../components/Header';
 import MissionSection from '../components/MissionSection';
 import { Shield, Award, BookOpen } from 'lucide-react';
 
 export default function About() {
   return (
     <div className="min-h-screen">
+      <Header />
       {/* Hero Section */}
       <div className="bg-indigo-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
