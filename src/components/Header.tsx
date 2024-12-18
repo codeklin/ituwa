@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavLinks from './navigation/NavLinks';
 import MobileMenu from './navigation/MobileMenu';
 import HamburgerButton from './navigation/HamburgerButton';
+import logo from '../assets/logo.png';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
-            <img className="w-40" src="/src/assets/logo.png" alt="logo"/>
+            <img  className="w-40" src={logo} alt="logo" />
             </Link>
           </div>
 

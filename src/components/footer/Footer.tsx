@@ -1,5 +1,6 @@
 
 import { Link } from 'react-router-dom';
+//import logoImage from '../assets/logo.png';
 import FooterLinks from './FooterLinks';
 import SocialLinks from './SocialLinks';
 import Newsletter from './Newsletter';
@@ -11,7 +12,7 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-4 xl:col-span-1">
             <Link to="/" className="flex items-center space-x-2">
-            <img className="w-40" src="/src/assets/logowhite.png" alt="logo"/>
+            
             </Link>
             <p className="text-gray-300 text-base">
               Empowering Africa's digital future through comprehensive cybersecurity education.
