@@ -19,7 +19,7 @@ export default function Hero() {
           </div>
 
           <div>
-            <img className="w-full" src="/src/assets/hero-img.png" alt="Cybersecurity" />
+            <img className="w-full" src="/public/hero-img.png" alt="Cybersecurity" />
           </div>
         </div>
       </div>
