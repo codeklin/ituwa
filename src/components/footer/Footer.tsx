@@ -12,7 +12,7 @@ export default function Footer() {
         <div className="xl:grid xl:grid-cols-3 xl:gap-8">
           <div className="space-y-4 xl:col-span-1">
             <Link to="/" className="flex items-center space-x-2">
-            
+              <p className='text-2xl font-bold text-white'>ituwa</p>
             </Link>
             <p className="text-gray-300 text-base">
               Empowering Africa's digital future through comprehensive cybersecurity education.
