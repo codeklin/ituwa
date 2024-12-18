@@ -21,7 +21,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16 lg:h-20">
           <div className="flex-shrink-0">
             <Link to="/" className="flex items-center space-x-2" onClick={closeMobileMenu}>
-            <img className="w-40" src="./src/assets/logo.png" alt="logo"/>
+            <img className="w-40" src="/src/assets/logo.png" alt="logo"/>
             </Link>
           </div>
 
