@@ -1,9 +1,12 @@
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
-import NavLinks from './navigation/NavLinks';
-import MobileMenu from './navigation/MobileMenu';
-import HamburgerButton from './navigation/HamburgerButton';
+
 import logo from '../assets/logo.png';
+
+import HamburgerButton from './navigation/HamburgerButton';
+import MobileMenu from './navigation/MobileMenu';
+import NavLinks from './navigation/NavLinks';
+
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

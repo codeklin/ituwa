@@ -1,8 +1,10 @@
-import Header from '../components/Header';
-import { useState } from 'react';
-import CourseCard from '../components/CourseCard';
-import { courses } from '../data/courses';
 import { BookOpen } from 'lucide-react';
+import { useState } from 'react';
+
+import CourseCard from '../components/CourseCard';
+import Header from '../components/Header';
+import { courses } from '../data/courses';
+
 
 export default function Courses() {
   const [selectedLevel, setSelectedLevel] = useState<string>('all');

@@ -1,8 +1,8 @@
-import { Course } from '../types/course';
 import cardImg1 from '../assets/img11.png' 
 import cardImg2 from '../assets/img12.jpg' 
-import cardImg3 from '../assets/img14.jpg' 
 import cardImg4 from '../assets/img13.jpg' 
+import cardImg3 from '../assets/img14.jpg' 
+import { Course } from '../types/course';
 
 
 export const auditCourses: Course[] = [

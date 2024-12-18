@@ -1,5 +1,5 @@
-import Header from '../components/Header';
 import FAQItem from '../components/FAQItem';
+import Header from '../components/Header';
 import { faqData } from '../data/faqData';
 
 export default function FAQ() {

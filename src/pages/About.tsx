@@ -1,7 +1,8 @@
 
+import { Shield, Award, BookOpen } from 'lucide-react';
+
 import Header from '../components/Header';
 import MissionSection from '../components/MissionSection';
-import { Shield, Award, BookOpen } from 'lucide-react';
 
 export default function About() {
   return (

@@ -1,5 +1,6 @@
 
 import { Clock, BookOpen, Award, Library, ArrowRight } from 'lucide-react';
+
 import { Course } from '../types/course';
 
 interface CourseCardProps {

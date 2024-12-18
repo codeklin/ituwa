@@ -1,9 +1,10 @@
 
 import { Link } from 'react-router-dom';
+
 //import logoImage from '../assets/logo.png';
 import FooterLinks from './FooterLinks';
-import SocialLinks from './SocialLinks';
 import Newsletter from './Newsletter';
+import SocialLinks from './SocialLinks';
 
 export default function Footer() {
   return (
