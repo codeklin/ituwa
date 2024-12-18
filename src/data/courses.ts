@@ -1,7 +1,7 @@
 import { Course } from '../types/course';
 import { implementationCourses } from './implementationCourses';
 import { auditCourses } from './auditCourses';
-import cardImg1 from '../assets/Img1.jpg' 
+import cardImg1 from '../assets/img1.jpg' 
 import cardImg2 from '../assets/img2.jpg' 
 import cardImg3 from '../assets/img3.jpg' 
 import cardImg4 from '../assets/img4.jpeg' 
