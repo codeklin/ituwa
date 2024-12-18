@@ -1,24 +1,29 @@
 import { Course } from '../types/course';
+import cardImg1 from '../assets/img11.png' 
+import cardImg2 from '../assets/img12.jpg' 
+import cardImg3 from '../assets/img14.jpg' 
+import cardImg4 from '../assets/img13.jpg' 
+
 
 export const auditCourses: Course[] = [
   {
     id: 'audit-1',
     title: 'ISO 27001 Lead Auditor',
     description: 'Comprehensive training for planning and conducting ISO 27001 audits with international recognition.',
-    level: 'Advanced',
+    level: 'Beginner',
     duration: '12 weeks',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40',
+    image: cardImg1,
     modules: 12,
     frameworks: ['ISO 27001', 'ISO 19011'],
     certification: true
   },
   {
     id: 'audit-2',
-    title: 'Advanced Security Assessment Techniques',
+    title: 'Security Assessment Techniques',
     description: 'Master modern security assessment methodologies and tools for comprehensive audits.',
-    level: 'Advanced',
+    level: 'Beginner',
     duration: '8 weeks',
-    image: 'https://images.unsplash.com/photo-1517433670267-08bbd4be890f',
+    image: cardImg2,
     modules: 8,
     frameworks: ['OSSTMM', 'NIST SP 800-115'],
     certification: true
@@ -27,9 +32,9 @@ export const auditCourses: Course[] = [
     id: 'audit-3',
     title: 'Compliance Audit Professional',
     description: 'Learn to conduct compliance audits across multiple frameworks including SOC 2, PCI DSS, and HIPAA.',
-    level: 'Advanced',
+    level: 'Beginner',
     duration: '10 weeks',
-    image: 'https://images.unsplash.com/photo-1513258496099-48168024aec0',
+    image: cardImg3,
     modules: 10,
     frameworks: ['SOC 2', 'PCI DSS', 'HIPAA'],
     certification: true
@@ -40,7 +45,7 @@ export const auditCourses: Course[] = [
     description: 'Specialized training for auditing cloud environments and cloud service providers.',
     level: 'Advanced',
     duration: '8 weeks',
-    image: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8',
+    image: cardImg4,
     modules: 8,
     frameworks: ['CSA STAR', 'ISO 27017'],
     certification: true

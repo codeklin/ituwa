@@ -1,5 +1,5 @@
 
-import { Clock, BookOpen, Award, Library } from 'lucide-react';
+import { Clock, BookOpen, Award, Library, ArrowRight } from 'lucide-react';
 import { Course } from '../types/course';
 
 interface CourseCardProps {
@@ -7,6 +7,12 @@ interface CourseCardProps {
 }
 
 export default function CourseCard({ course }: CourseCardProps) {
+
+  const handleEnrollClick = () => {
+    // Replace this URL with your actual Google Form URL
+    window.open('https://forms.gle/srGynW1yZre5T8af6', '_blank');
+  };
+
   return (
     <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
       <img 
@@ -58,6 +64,15 @@ export default function CourseCard({ course }: CourseCardProps) {
             <BookOpen className="w-4 h-4" />
             <span>{course.modules} modules</span>
           </div>
+        </div>
+        <div className='mt-4'>
+          <button 
+            onClick={handleEnrollClick}
+            className="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold flex items-center justify-center hover:bg-indigo-700 transition-colors"
+          >
+            Enroll Now
+            <ArrowRight className=" ml-2 w-5 h-5" />
+          </button>
         </div>
       </div>
     </div>

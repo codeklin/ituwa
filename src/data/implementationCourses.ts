@@ -1,13 +1,17 @@
 import { Course } from '../types/course';
+import cardImg1 from '../assets/img21.jpg' 
+import cardImg2 from '../assets/img22.png' 
+import cardImg3 from '../assets/img23.jpg' 
+import cardImg4 from '../assets/img24.jpg' 
 
 export const implementationCourses: Course[] = [
   {
     id: 'impl-1',
     title: 'ISO 27001 Lead Implementer',
     description: 'Master the implementation of ISO 27001 ISMS, including risk assessment, documentation, and continuous improvement.',
-    level: 'Advanced',
+    level: 'Beginner',
     duration: '12 weeks',
-    image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40',
+    image: cardImg1,
     modules: 12,
     frameworks: ['ISO 27001', 'PDCA'],
     certification: true
@@ -16,9 +20,9 @@ export const implementationCourses: Course[] = [
     id: 'impl-2',
     title: 'NIST Cybersecurity Framework Implementation',
     description: 'Comprehensive guide to implementing the NIST CSF across organizations of all sizes.',
-    level: 'Advanced',
+    level: 'Beginner',
     duration: '10 weeks',
-    image: 'https://images.unsplash.com/photo-1551808525-51a94da548ce',
+    image: cardImg2,
     modules: 10,
     frameworks: ['NIST CSF', 'Risk Management'],
     certification: true
@@ -29,7 +33,7 @@ export const implementationCourses: Course[] = [
     description: 'Learn to implement SOC 2 controls and prepare organizations for successful audits.',
     level: 'Advanced',
     duration: '8 weeks',
-    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa',
+    image: cardImg3,
     modules: 8,
     frameworks: ['SOC 2', 'COSO'],
     certification: true
@@ -40,7 +44,7 @@ export const implementationCourses: Course[] = [
     description: 'Design and implement Zero Trust security models in modern organizations.',
     level: 'Advanced',
     duration: '6 weeks',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31',
+    image: cardImg4,
     modules: 6,
     frameworks: ['Zero Trust', 'NIST SP 800-207'],
     certification: true
