@@ -4,7 +4,7 @@ import { auditCourses } from './auditCourses';
 import cardImg1 from '../assets/img1.jpg' 
 import cardImg2 from '../assets/img2.jpg' 
 import cardImg3 from '../assets/img3.jpg' 
-import cardImg4 from '../assets/img4.jpeg' 
+import cardImg4 from '../assets/img4.jpg' 
 import cardImg5 from '../assets/img5.jpg' 
 import cardImg6 from '../assets/img6.jpg' 
 
