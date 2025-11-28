@@ -7,6 +7,9 @@ export interface User {
   role: UserRole
   full_name: string
   avatar_url: string | null
+  bio?: string | null
+  wallet_address?: string | null
+  last_login_at?: string | null
   created_at: string
   updated_at: string
 }
