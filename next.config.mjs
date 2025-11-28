@@ -3,9 +3,6 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
     remotePatterns: [
       {
@@ -18,8 +15,6 @@ const nextConfig = {
   },
   // Enable React strict mode for better development experience
   reactStrictMode: true,
-  // Optimize production builds
-  swcMinify: true,
 }
 
 export default nextConfig

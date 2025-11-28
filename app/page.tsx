@@ -51,9 +51,9 @@ export default function LandingPage() {
             <Image
               src="/logo.png"
               alt="Ituwa Logo"
-              width={62}
-              height={62}
-              className="w-8 h-8 object-contain"
+              width={58}
+              height={58}
+              className="w-12 h-12 object-contain"
             />
 
           </div>
@@ -404,9 +404,9 @@ export default function LandingPage() {
                 <Image
                   src="/logo.png"
                   alt="Ituwa Logo"
-                  width={32}
-                  height={32}
-                  className="w-8 h-8 object-contain"
+                  width={48}
+                  height={48}
+                  className="w-10 h-10 object-contain"
                 />
                 <span className="font-bold text-foreground">Ituwa</span>
               </div>
