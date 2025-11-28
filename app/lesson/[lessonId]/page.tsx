@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, use } from "react"
 import Link from "next/link"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
@@ -124,7 +124,8 @@ const LESSON_CONTENT = {
   },
 }
 
-export default function LessonPage({ params }: { params: { lessonId: string } }) {
+export default function LessonPage({ params }: { params: Promise<{ lessonId: string }> }) {
+  const { lessonId } = use(params)
   const [isCompleted, setIsCompleted] = useState(false)
   const [showQuiz, setShowQuiz] = useState(false)
   const [quizScore, setQuizScore] = useState<number | null>(null)
@@ -138,7 +139,7 @@ export default function LessonPage({ params }: { params: { lessonId: string } })
 
   for (let catIdx = 0; catIdx < LEARNING_CATEGORIES.length; catIdx++) {
     const category = LEARNING_CATEGORIES[catIdx]
-    const lsnIdx = category.lessons.findIndex((l) => l.id === params.lessonId)
+    const lsnIdx = category.lessons.findIndex((l) => l.id === lessonId)
     if (lsnIdx !== -1) {
       foundLesson = category.lessons[lsnIdx]
       categoryName = category.name
@@ -160,9 +161,9 @@ export default function LessonPage({ params }: { params: { lessonId: string } })
     notFound()
   }
 
-  const hasQuiz = params.lessonId in LESSON_QUIZZES
-  const quiz = hasQuiz ? LESSON_QUIZZES[params.lessonId as keyof typeof LESSON_QUIZZES] : null
-  const lessonContent = LESSON_CONTENT[params.lessonId as keyof typeof LESSON_CONTENT]
+  const hasQuiz = lessonId in LESSON_QUIZZES
+  const quiz = hasQuiz ? LESSON_QUIZZES[lessonId as keyof typeof LESSON_QUIZZES] : null
+  const lessonContent = LESSON_CONTENT[lessonId as keyof typeof LESSON_CONTENT]
 
   const handleQuizComplete = (score: number) => {
     setQuizScore(score)

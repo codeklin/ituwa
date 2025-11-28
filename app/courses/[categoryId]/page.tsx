@@ -1,6 +1,7 @@
 "use client"
 
 import type React from "react"
+import { use } from "react"
 
 import Link from "next/link"
 import { Card, CardContent } from "@/components/ui/card"
@@ -25,8 +26,9 @@ const COLOR_CLASSES = {
   accent: "bg-accent text-accent-foreground",
 }
 
-export default function CategoryPage({ params }: { params: { categoryId: string } }) {
-  const category = LEARNING_CATEGORIES.find((c) => c.id === params.categoryId)
+export default function CategoryPage({ params }: { params: Promise<{ categoryId: string }> }) {
+  const { categoryId } = use(params)
+  const category = LEARNING_CATEGORIES.find((c) => c.id === categoryId)
 
   if (!category) {
     notFound()
