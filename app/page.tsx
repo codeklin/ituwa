@@ -15,7 +15,7 @@ export default function LandingPage() {
   const [text, setText] = useState("")
   const [delta, setDelta] = useState(200 - Math.random() * 100)
 
-  const words = ["Blockchain", "Cryptocurrency", "Web3"]
+  const words = ["Blockchain", "Crypto", "Web3"]
 
   useEffect(() => {
     let ticker = setInterval(() => {
@@ -87,18 +87,17 @@ export default function LandingPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Link href="/">
-              <Image
-                src="/logo.png"
-                alt="Ituwa Logo"
-                width={140}
-                height={140}
-                className="w-24 h-24 object-contain"
-                unoptimized
-              />
-            </Link>
-          </div>
+          <Link href="/" aria-label="Home" className="flex items-center">
+            <Image
+              src="/ituwa.png"
+              alt="Ituwa Logo"
+              width={120}
+              height={120}
+              className="w-20 h-20 object-contain"
+              unoptimized
+            />
+            <span className="text-xl font-bold text-foreground">Ituwa</span>
+          </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#features" className="text-muted-foreground hover:text-primary transition duration-200">
               Features
@@ -449,7 +448,7 @@ export default function LandingPage() {
               <div className="flex items-center gap-2 mb-4">
                 <Link href="/">
                   <Image
-                    src="/logo.png"
+                    src="/ituwa.png"
                     alt="Ituwa Logo"
                     width={80}
                     height={80}

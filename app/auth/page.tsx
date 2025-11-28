@@ -20,7 +20,7 @@ export default function AuthPage() {
           <div className="flex justify-center mb-4">
             <Link href="/">
               <Image
-                src="/logo.png"
+                src="/ituwa.png"
                 alt="Ituwa Logo"
                 width={64}
                 height={64}

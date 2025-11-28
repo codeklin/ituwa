@@ -40,7 +40,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <div className="p-6 border-b border-sidebar-border">
           <div className="flex items-center gap-2">
             <Image
-              src="/logo.png"
+              src="/ituwa.png"
               alt="Ituwa Logo"
               width={32}
               height={32}
@@ -92,8 +92,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-sidebar border-r border-sidebar-border flex flex-col md:hidden">
           <div className="p-6 border-b border-sidebar-border flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <Image
-                src="/logo.png"
+            <Image
+                src="/ituwa.png"
                 alt="Ituwa Logo"
                 width={32}
                 height={32}

@@ -14,15 +14,11 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        url: "/logo.png",
-        sizes: "any",
-      },
-      {
         url: "/favicon.ico",
         sizes: "any",
       },
     ],
-    apple: "/logo.png",
+    apple: "/pwa.png",
   },
 }
 
@@ -41,7 +37,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${_geistSans.className} font-sans bg-background text-foreground`}>
-        {/* Page Content */}
         <div className="pb-20 md:pb-0">{children}</div>
 
         <MobileFooterNav />
