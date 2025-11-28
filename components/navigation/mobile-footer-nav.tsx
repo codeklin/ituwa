@@ -4,10 +4,21 @@ import Link from "next/link"
 import { useAuth } from "@/lib/hooks/use-auth"
 import { BookOpen, Code2, BarChart3, Settings, Users } from "lucide-react"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 
 export function MobileFooterNav() {
   const { user } = useAuth()
   const pathname = usePathname()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  // Don't render anything during SSR to prevent hydration mismatches
+  if (!mounted) {
+    return null
+  }
 
   if (pathname?.startsWith("/auth") || pathname?.startsWith("/admin") || pathname === "/") {
     return null

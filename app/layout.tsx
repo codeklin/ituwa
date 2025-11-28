@@ -1,14 +1,8 @@
 import type React from "react"
 import type { Metadata, Viewport } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
-import dynamic from "next/dynamic"
 import "./globals.css"
-
-// Dynamically import MobileFooterNav with no SSR to prevent hydration mismatches
-const MobileFooterNav = dynamic(() => import("@/components/navigation/mobile-footer-nav").then(mod => ({ default: mod.MobileFooterNav })), {
-  ssr: false,
-  loading: () => null
-})
+import { MobileFooterNav } from "@/components/navigation/mobile-footer-nav"
 
 const _geistSans = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
