@@ -2,6 +2,7 @@
 
 import { BookOpen, Code2, Settings, Users, Zap, BarChart3, X, LogOut } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { useAuth } from "@/lib/hooks/use-auth"
 import { useRouter } from "next/navigation"
 
@@ -38,9 +39,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       <aside className="hidden md:flex flex-col w-64 bg-sidebar border-r border-sidebar-border">
         <div className="p-6 border-b border-sidebar-border">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-sidebar-primary flex items-center justify-center">
-              <span className="text-sidebar-primary-foreground font-bold text-sm">Ⅲ</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Ituwa Logo"
+              width={32}
+              height={32}
+              className="w-8 h-8 object-contain"
+            />
             <span className="font-bold text-sidebar-foreground">Ituwa</span>
           </div>
         </div>
@@ -86,9 +91,13 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         <aside className="fixed inset-y-0 left-0 z-50 w-64 bg-sidebar border-r border-sidebar-border flex flex-col md:hidden">
           <div className="p-6 border-b border-sidebar-border flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-lg bg-sidebar-primary flex items-center justify-center">
-                <span className="text-sidebar-primary-foreground font-bold text-sm">Ⅲ</span>
-              </div>
+              <Image
+                src="/logo.png"
+                alt="Ituwa Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 object-contain"
+              />
               <span className="font-bold text-sidebar-foreground">Ituwa</span>
             </div>
             <button onClick={onClose} className="p-1 hover:bg-sidebar-accent rounded">

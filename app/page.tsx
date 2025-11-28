@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/hooks/use-auth"
 import { ArrowRight, BookOpen, Code2, TrendingUp, Shield, Rocket, Zap, Brain, Target, Users } from "lucide-react"
 import Link from "next/link"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 
@@ -47,10 +48,14 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-bold text-sm">Ⅲ</span>
-            </div>
-            <span className="font-bold text-lg text-foreground">Ituwa</span>
+            <Image
+              src="/logo.png"
+              alt="Ituwa Logo"
+              width={62}
+              height={62}
+              className="w-8 h-8 object-contain"
+            />
+
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#features" className="text-muted-foreground hover:text-primary transition duration-200">
@@ -396,9 +401,13 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-bold text-sm">Ⅲ</span>
-                </div>
+                <Image
+                  src="/logo.png"
+                  alt="Ituwa Logo"
+                  width={32}
+                  height={32}
+                  className="w-8 h-8 object-contain"
+                />
                 <span className="font-bold text-foreground">Ituwa</span>
               </div>
               <p className="text-sm text-muted-foreground">Web3 learning platform built for Africa</p>
