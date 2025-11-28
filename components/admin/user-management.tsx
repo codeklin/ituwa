@@ -51,20 +51,38 @@ export default function UserManagement() {
   const fetchUsers = async () => {
     try {
       setIsLoading(true)
-      // Fetch users from your profile table (adjust table name if needed, e.g., 'user_profiles' or 'users')
+      console.log("Fetching users...")
+
+      // First, let's try a simple count query to test permissions
+      const { count, error: countError } = await supabase
+        .from("users")
+        .select("*", { count: "exact", head: true })
+
+      if (countError) {
+        console.error("Count query error:", countError)
+        throw countError
+      }
+
+      console.log("User count:", count)
+
+      // Now fetch the actual data
       const { data, error } = await supabase
         .from("users")
-        .select("*")
+        .select("id, email, username, full_name, role, created_at")
         .order("created_at", { ascending: false })
+        .limit(100) // Limit for performance
 
-      if (error) throw error
-
-      if (data) {
-        setUsers(data as any) // Type assertion for now, ideally match DB types
+      if (error) {
+        console.error("Data fetch error:", error)
+        throw error
       }
-    } catch (error) {
+
+      console.log("Fetched users:", data?.length || 0)
+      setUsers(data || [])
+    } catch (error: any) {
       console.error("Error fetching users:", error)
-      toast.error("Failed to load users")
+      toast.error(`Failed to load users: ${error.message || "Unknown error"}`)
+      setUsers([]) // Set empty array on error
     } finally {
       setIsLoading(false)
     }
