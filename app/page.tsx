@@ -55,6 +55,7 @@ export default function LandingPage() {
                 width={140}
                 height={140}
                 className="w-24 h-24 object-contain"
+                unoptimized
               />
             </Link>
           </div>
@@ -409,6 +410,7 @@ export default function LandingPage() {
                     width={80}
                     height={80}
                     className="w-16 h-16 object-contain"
+                    unoptimized
                   />
                 </Link>
               </div>

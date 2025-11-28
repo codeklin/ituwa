@@ -45,6 +45,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
               width={32}
               height={32}
               className="w-8 h-8 object-contain"
+              unoptimized
             />
             <span className="font-bold text-sidebar-foreground">Ituwa</span>
           </div>
@@ -97,6 +98,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                 width={32}
                 height={32}
                 className="w-8 h-8 object-contain"
+                unoptimized
               />
               <span className="font-bold text-sidebar-foreground">Ituwa</span>
             </div>

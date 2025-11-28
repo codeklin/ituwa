@@ -12,6 +12,7 @@ const nextConfig = {
       },
     ],
     unoptimized: false, // Enable optimization for production
+    domains: ['localhost'], // Allow localhost for development
   },
   // Enable React strict mode for better development experience
   reactStrictMode: true,
