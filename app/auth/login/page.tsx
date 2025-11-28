@@ -84,24 +84,7 @@ export default function LoginPage() {
             </Link>
           </div>
 
-          {/* Demo Login for Testing */}
-          <div className="mt-6 p-4 bg-muted rounded-lg border border-border">
-            <p className="text-xs font-medium text-muted-foreground mb-3">Demo Credentials:</p>
-            <div className="space-y-2">
-              <div>
-                <p className="text-xs text-muted-foreground font-medium">Super Admin:</p>
-                <p className="text-xs text-muted-foreground">gigsdev007@gmail.com / demo123</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground font-medium">Admin:</p>
-                <p className="text-xs text-muted-foreground">admin@ituwa.com / admin123</p>
-              </div>
-              <div>
-                <p className="text-xs text-muted-foreground font-medium">User:</p>
-                <p className="text-xs text-muted-foreground">user@ituwa.com / user123</p>
-              </div>
-            </div>
-          </div>
+
         </CardContent>
       </Card>
     </div>

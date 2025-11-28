@@ -48,14 +48,15 @@ export default function LandingPage() {
       <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <Image
-              src="/logo.png"
-              alt="Ituwa Logo"
-              width={58}
-              height={58}
-              className="w-12 h-12 object-contain"
-            />
-
+            <Link href="/">
+              <Image
+                src="/logo.png"
+                alt="Ituwa Logo"
+                width={140}
+                height={140}
+                className="w-24 h-24 object-contain"
+              />
+            </Link>
           </div>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">
             <a href="#features" className="text-muted-foreground hover:text-primary transition duration-200">
@@ -401,14 +402,15 @@ export default function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Image
-                  src="/logo.png"
-                  alt="Ituwa Logo"
-                  width={48}
-                  height={48}
-                  className="w-10 h-10 object-contain"
-                />
-                <span className="font-bold text-foreground">Ituwa</span>
+                <Link href="/">
+                  <Image
+                    src="/logo.png"
+                    alt="Ituwa Logo"
+                    width={80}
+                    height={80}
+                    className="w-16 h-16 object-contain"
+                  />
+                </Link>
               </div>
               <p className="text-sm text-muted-foreground">Web3 learning platform built for Africa</p>
             </div>

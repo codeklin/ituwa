@@ -1,12 +1,10 @@
 "use client"
-
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Input } from "@/components/ui/input"
 import { Search, Trash2, Edit2 } from "lucide-react"
-import { MOCK_REGISTERED_USERS } from "@/lib/constants/mock-users"
 import {
   Dialog,
   DialogContent,
@@ -17,6 +15,8 @@ import {
 } from "@/components/ui/dialog"
 import { Label } from "@/components/ui/label"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { supabase } from "@/lib/supabase/client"
+import { toast } from "sonner"
 
 const ROLE_COLORS = {
   super_admin: "bg-destructive text-destructive-foreground",
@@ -24,36 +24,103 @@ const ROLE_COLORS = {
   user: "bg-secondary text-secondary-foreground",
 }
 
+type User = {
+  id: string
+  email: string
+  username: string
+  full_name: string
+  role: "user" | "admin" | "super_admin"
+  created_at: string
+  // Add other fields if they exist in your DB, or map them
+  lessons_completed?: number
+  total_score?: number
+}
+
 export default function UserManagement() {
   const [searchQuery, setSearchQuery] = useState("")
-  const [users, setUsers] = useState(MOCK_REGISTERED_USERS)
-  const [selectedUser, setSelectedUser] = useState<any>(null)
+  const [users, setUsers] = useState<User[]>([])
+  const [isLoading, setIsLoading] = useState(true)
+  const [selectedUser, setSelectedUser] = useState<User | null>(null)
   const [selectedRole, setSelectedRole] = useState<string>("")
+
+
+  useEffect(() => {
+    fetchUsers()
+  }, [])
+
+  const fetchUsers = async () => {
+    try {
+      setIsLoading(true)
+      // Fetch users from your profile table (adjust table name if needed, e.g., 'user_profiles' or 'users')
+      const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .order("created_at", { ascending: false })
+
+      if (error) throw error
+
+      if (data) {
+        setUsers(data as any) // Type assertion for now, ideally match DB types
+      }
+    } catch (error) {
+      console.error("Error fetching users:", error)
+      toast.error("Failed to load users")
+    } finally {
+      setIsLoading(false)
+    }
+  }
 
   const filteredUsers = users.filter(
     (user) =>
-      user.email.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      user.username.toLowerCase().includes(searchQuery.toLowerCase()),
+      user.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      user.username?.toLowerCase().includes(searchQuery.toLowerCase()),
   )
 
-  const handleDeleteUser = (id: string) => {
-    setUsers(users.filter((u) => u.id !== id))
+  const handleDeleteUser = async (id: string) => {
+    if (!confirm("Are you sure you want to delete this user? This action cannot be undone.")) return
+
+    try {
+      // Note: Deleting from auth.users requires service role or a specific function
+      // For now, we'll try deleting from the public table which might cascade or fail depending on RLS
+      const { error } = await supabase.from("users").delete().eq("id", id)
+
+      if (error) throw error
+
+      setUsers(users.filter((u) => u.id !== id))
+      toast.success("User deleted successfully")
+    } catch (error) {
+      console.error("Error deleting user:", error)
+      toast.error("Failed to delete user. You may need Super Admin privileges.")
+    }
   }
 
-  const handleUpdateRole = () => {
+  const handleUpdateRole = async () => {
     if (selectedUser && selectedRole) {
-      setUsers(users.map((u) => (u.id === selectedUser.id ? { ...u, role: selectedRole as any } : u)))
-      setSelectedUser(null)
-      setSelectedRole("")
+      try {
+        const { error } = await supabase
+          .from("users")
+          .update({ role: selectedRole })
+          .eq("id", selectedUser.id)
+
+        if (error) throw error
+
+        setUsers(users.map((u) => (u.id === selectedUser.id ? { ...u, role: selectedRole as any } : u)))
+        setSelectedUser(null)
+        setSelectedRole("")
+        toast.success("User role updated successfully")
+      } catch (error) {
+        console.error("Error updating role:", error)
+        toast.error("Failed to update user role")
+      }
     }
   }
 
   const stats = {
     total: users.length,
-    active: users.filter((u) => u.status === "active").length,
+    active: users.length, // Assuming all fetched are active for now
     superAdmin: users.filter((u) => u.role === "super_admin").length,
     admin: users.filter((u) => u.role === "admin").length,
-    avgScore: Math.round(users.reduce((a, u) => a + u.totalScore, 0) / users.length),
+    avgScore: 0, // Placeholder until we have real score data
   }
 
   return (
@@ -119,80 +186,94 @@ export default function UserManagement() {
                     <th className="text-left py-3 px-4 font-semibold text-muted-foreground">User</th>
                     <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Email</th>
                     <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Role</th>
-                    <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Lessons</th>
-                    <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Score</th>
+                    <th className="text-left py-3 px-4 font-semibold text-muted-foreground">Joined</th>
                     <th className="text-right py-3 px-4 font-semibold text-muted-foreground">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {filteredUsers.map((user) => (
-                    <tr key={user.id} className="border-b border-border hover:bg-muted/50">
-                      <td className="py-4 px-4">
-                        <div>
-                          <p className="font-medium text-foreground">{user.fullName}</p>
-                          <p className="text-xs text-muted-foreground">@{user.username}</p>
-                        </div>
-                      </td>
-                      <td className="py-4 px-4 text-foreground text-sm">{user.email}</td>
-                      <td className="py-4 px-4">
-                        <Badge className={`${ROLE_COLORS[user.role as keyof typeof ROLE_COLORS]} capitalize`}>
-                          {user.role.replace("_", " ")}
-                        </Badge>
-                      </td>
-                      <td className="py-4 px-4 text-foreground">{user.lessonsCompleted}</td>
-                      <td className="py-4 px-4 text-foreground">{user.totalScore}</td>
-                      <td className="py-4 px-4 text-right">
-                        <div className="flex items-center justify-end gap-2">
-                          <Dialog>
-                            <DialogTrigger asChild>
-                              <Button
-                                size="icon"
-                                variant="ghost"
-                                onClick={() => {
-                                  setSelectedUser(user)
-                                  setSelectedRole(user.role)
-                                }}
-                              >
-                                <Edit2 className="w-4 h-4" />
-                              </Button>
-                            </DialogTrigger>
-                            <DialogContent>
-                              <DialogHeader>
-                                <DialogTitle>Update User Role</DialogTitle>
-                                <DialogDescription>Change the role for {user.fullName}</DialogDescription>
-                              </DialogHeader>
-                              <div className="space-y-4">
-                                <div>
-                                  <Label>Current Role: {user.role.replace("_", " ")}</Label>
-                                  <Select value={selectedRole} onValueChange={setSelectedRole}>
-                                    <SelectTrigger>
-                                      <SelectValue placeholder="Select new role" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                      <SelectItem value="user">User</SelectItem>
-                                      <SelectItem value="admin">Admin</SelectItem>
-                                      <SelectItem value="super_admin">Super Admin</SelectItem>
-                                    </SelectContent>
-                                  </Select>
-                                </div>
-                                <Button onClick={handleUpdateRole} className="w-full">
-                                  Update Role
-                                </Button>
-                              </div>
-                            </DialogContent>
-                          </Dialog>
-                          <Button
-                            size="icon"
-                            variant="ghost"
-                            className="text-destructive hover:text-destructive"
-                            onClick={() => handleDeleteUser(user.id)}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </Button>
-                        </div>
+                  {isLoading ? (
+                    <tr>
+                      <td colSpan={5} className="py-8 text-center text-muted-foreground">
+                        Loading users...
                       </td>
                     </tr>
-                  ))}
+                  ) : filteredUsers.length === 0 ? (
+                    <tr>
+                      <td colSpan={5} className="py-8 text-center text-muted-foreground">
+                        No users found
+                      </td>
+                    </tr>
+                  ) : (
+                    filteredUsers.map((user) => (
+                      <tr key={user.id} className="border-b border-border hover:bg-muted/50">
+                        <td className="py-4 px-4">
+                          <div>
+                            <p className="font-medium text-foreground">{user.full_name || "N/A"}</p>
+                            <p className="text-xs text-muted-foreground">@{user.username || "user"}</p>
+                          </div>
+                        </td>
+                        <td className="py-4 px-4 text-foreground text-sm">{user.email}</td>
+                        <td className="py-4 px-4">
+                          <Badge className={`${ROLE_COLORS[user.role as keyof typeof ROLE_COLORS]} capitalize`}>
+                            {user.role?.replace("_", " ") || "User"}
+                          </Badge>
+                        </td>
+                        <td className="py-4 px-4 text-foreground">
+                          {new Date(user.created_at).toLocaleDateString()}
+                        </td>
+                        <td className="py-4 px-4 text-right">
+                          <div className="flex items-center justify-end gap-2">
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button
+                                  size="icon"
+                                  variant="ghost"
+                                  onClick={() => {
+                                    setSelectedUser(user)
+                                    setSelectedRole(user.role)
+                                  }}
+                                >
+                                  <Edit2 className="w-4 h-4" />
+                                </Button>
+                              </DialogTrigger>
+                              <DialogContent>
+                                <DialogHeader>
+                                  <DialogTitle>Update User Role</DialogTitle>
+                                  <DialogDescription>Change the role for {user.full_name}</DialogDescription>
+                                </DialogHeader>
+                                <div className="space-y-4">
+                                  <div>
+                                    <Label>Current Role: {user.role?.replace("_", " ")}</Label>
+                                    <Select value={selectedRole} onValueChange={setSelectedRole}>
+                                      <SelectTrigger>
+                                        <SelectValue placeholder="Select new role" />
+                                      </SelectTrigger>
+                                      <SelectContent>
+                                        <SelectItem value="user">User</SelectItem>
+                                        <SelectItem value="admin">Admin</SelectItem>
+                                        <SelectItem value="super_admin">Super Admin</SelectItem>
+                                      </SelectContent>
+                                    </Select>
+                                  </div>
+                                  <Button onClick={handleUpdateRole} className="w-full">
+                                    Update Role
+                                  </Button>
+                                </div>
+                              </DialogContent>
+                            </Dialog>
+                            <Button
+                              size="icon"
+                              variant="ghost"
+                              className="text-destructive hover:text-destructive"
+                              onClick={() => handleDeleteUser(user.id)}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </Button>
+                          </div>
+                        </td>
+                      </tr>
+                    ))
+                  )}
                 </tbody>
               </table>
             </div>
