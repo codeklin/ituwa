@@ -2,7 +2,7 @@
 
 import type React from "react"
 import Link from "next/link"
-import Image from "next/image"
+// Use HTML img for brand to avoid Next optimization
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { LEARNING_CATEGORIES } from "@/lib/constants/learning-content"
@@ -33,7 +33,7 @@ export default function CoursesPage() {
       <header className="bg-card border-b border-border sticky top-0 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <Link href="/" aria-label="Home" className="flex items-center gap-2">
-            <Image src="/ituwa.png" alt="Ituwa Logo" width={32} height={32} className="w-8 h-8 object-contain" />
+            <img src="/ituwa.png" alt="Ituwa Logo" width="32" height="32" className="w-8 h-8 object-contain" />
             <span className="font-bold text-foreground">Ituwa</span>
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm font-medium">

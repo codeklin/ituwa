@@ -3,7 +3,8 @@ import { useRouter } from "next/navigation"
 import { useAuth } from "@/lib/hooks/use-auth"
 import { ArrowRight, BookOpen, Code2, TrendingUp, Shield, Rocket, Zap, Brain, Target, Users } from "lucide-react"
 import Link from "next/link"
-import Image from "next/image"
+// Use HTML img to avoid Next optimization route in production
+// and ensure reliability on Vercel for static public assets
 import { Button } from "@/components/ui/button"
 import { useEffect, useState } from "react"
 
@@ -87,14 +88,13 @@ export default function LandingPage() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full bg-card/95 backdrop-blur border-b border-border">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
-          <Link href="/" aria-label="Home" className="flex items-center">
-            <Image
+          <Link href="/" aria-label="Home" className="flex items-center gap-2">
+            <img
               src="/ituwa.png"
               alt="Ituwa Logo"
-              width={120}
-              height={120}
-              className="w-20 h-20 object-contain"
-              unoptimized
+              width={80}
+              height={80}
+              className="w-16 h-16 object-contain"
             />
             <span className="text-xl font-bold text-foreground">Ituwa</span>
           </Link>
@@ -447,13 +447,12 @@ export default function LandingPage() {
             <div>
               <div className="flex items-center gap-2 mb-4">
                 <Link href="/">
-                  <Image
+                  <img
                     src="/ituwa.png"
                     alt="Ituwa Logo"
-                    width={80}
-                    height={80}
+                    width="80"
+                    height="80"
                     className="w-16 h-16 object-contain"
-                    unoptimized
                   />
                 </Link>
               </div>
