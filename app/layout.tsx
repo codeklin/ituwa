@@ -12,12 +12,8 @@ export const metadata: Metadata = {
   description:
     "The simplest way to learn blockchain, trading, and development. Start your journey from zero to decentralized hero.",
   icons: {
-    icon: [
-      {
-        url: "/favicon.ico",
-        sizes: "any",
-      },
-    ],
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
     apple: "/pwa.png",
   },
 }
