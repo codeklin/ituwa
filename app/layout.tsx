@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: "Ituwa - Learn Web3 for Africa",
   description:
     "The simplest way to learn blockchain, trading, and development. Start your journey from zero to decentralized hero.",
-  generator: "v0.app",
   icons: {
     icon: [
       {
