@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useAuth } from "@/lib/hooks/use-auth"
+import Image from "next/image"
 
 export default function AuthPage() {
   return (
@@ -18,10 +19,13 @@ export default function AuthPage() {
         <CardHeader className="text-center">
           <div className="flex justify-center mb-4">
             <Link href="/">
-              <img
+              <Image
                 src="/logo.png"
                 alt="Ituwa Logo"
+                width={64}
+                height={64}
                 className="w-16 h-16 object-contain"
+                loading="eager"
               />
             </Link>
           </div>
