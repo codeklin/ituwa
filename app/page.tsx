@@ -10,6 +10,46 @@ import { useEffect, useState } from "react"
 export default function LandingPage() {
   const { user, isLoading } = useAuth()
   const router = useRouter()
+  const [currentWord, setCurrentWord] = useState("Blockchain")
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [text, setText] = useState("")
+  const [delta, setDelta] = useState(200 - Math.random() * 100)
+
+  const words = ["Blockchain", "Cryptocurrency", "Web3"]
+
+  useEffect(() => {
+    let ticker = setInterval(() => {
+      tick()
+    }, delta)
+
+    return () => {
+      clearInterval(ticker)
+    }
+  }, [text, isDeleting])
+
+  const tick = () => {
+    let i = words.indexOf(currentWord)
+    let fullText = currentWord
+    let updatedText = isDeleting
+      ? fullText.substring(0, text.length - 1)
+      : fullText.substring(0, text.length + 1)
+
+    setText(updatedText)
+
+    if (isDeleting) {
+      setDelta(prevDelta => prevDelta / 1.5)
+    }
+
+    if (!isDeleting && updatedText === fullText) {
+      setIsDeleting(true)
+      setDelta(1500)
+    } else if (isDeleting && updatedText === "") {
+      setIsDeleting(false)
+      let nextIndex = (i + 1) % words.length
+      setCurrentWord(words[nextIndex])
+      setDelta(500)
+    }
+  }
 
   if (isLoading) {
     return <div className="min-h-screen bg-background" />
@@ -20,7 +60,7 @@ export default function LandingPage() {
 
     useEffect(() => {
       let start = 0
-      const increment = end / 60 // Animate over 60 frames (~1 second at 60fps)
+      const increment = end / 60
       const timer = setInterval(() => {
         start += increment
         if (start >= end) {
@@ -117,7 +157,10 @@ export default function LandingPage() {
                 <span className="text-xs font-semibold text-primary">Master Web3 from Zero to Hero</span>
               </div>
               <h1 className="text-5xl md:text-6xl font-bold text-balance text-foreground leading-tight">
-                Blockchain Made Simple for Africa
+                <span className="text-primary relative">
+                  {text}
+                  <span className="absolute -right-2 top-0 w-0.5 h-full bg-primary animate-pulse"></span>
+                </span> Made Simple for Africa
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground text-balance leading-relaxed">
                 Learn Web3, crypto trading, and smart contract development through hands-on practice. No prior
@@ -171,6 +214,7 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Rest of your existing code remains the same */}
       {/* Stats Section */}
       <section className="py-12 md:py-16 bg-muted/30">
         <div className="container mx-auto px-4">
